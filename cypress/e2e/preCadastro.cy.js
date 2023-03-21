@@ -12,6 +12,7 @@ describe('Funcionalidade de pré cadastro', () => {
         let nomeFaker = faker.name.firstName()
         let sobreNomeFaker = faker.name.lastName()
         let emailFaker = faker.internet.email(nomeFaker)
+        let senhaFaker = faker.internet.password()
 
         cy.get('#reg_email').type(emailFaker)
         cy.get('#reg_password').type(faker.internet.password())
@@ -23,5 +24,16 @@ describe('Funcionalidade de pré cadastro', () => {
         cy.get('.woocommerce-Button').click();
 
         cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso');        
+    });
+
+    it('Deve cadastrar com command.js', () => {
+        let nomeFaker2 = faker.name.firstName()
+        let sobreNomeFaker2 = faker.name.lastName()
+        let emailFaker2 = faker.internet.email(nomeFaker2)
+        let senhaFaker2 = faker.internet.password()
+
+        cy.preCadastro(emailFaker2, senhaFaker2, nomeFaker2, sobreNomeFaker2)
+        
+        cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso');
     });
 });
