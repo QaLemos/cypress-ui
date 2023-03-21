@@ -16,7 +16,7 @@ context('Funcionalidade de login', () => {
     
     });
 
-    it.only('Realizar login com sucesso usando dados de arquivo', () => {
+    it('Realizar login com sucesso usando dados de arquivo', () => {
         cy.get('#username').type(perfil.email)
         cy.get('#password').type(perfil.senha, {log: false})
         cy.get('.woocommerce-form > .button').click()
